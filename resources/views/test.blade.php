@@ -14,6 +14,8 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="">
-    <h1 class="text-red-500">Hello World</h1>
+    <div class="flex justify-center items-center">
+        <button class="btn btn-primary">Button</button>
+    </div>
 </body>
 </html>
