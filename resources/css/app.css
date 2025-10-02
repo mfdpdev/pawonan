@@ -1,3 +1,6 @@
+body {
+    @apply bg-gray-100
+}
 @import 'tailwindcss';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -11,3 +14,11 @@
 }
 
 @plugin "daisyui";
+@plugin "daisyui" {
+    themes: light --default;
+    root: ":root";
+    include: ;
+    exclude: ;
+    prefix: ;
+    logs: true;
+}
