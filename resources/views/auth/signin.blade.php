@@ -5,13 +5,23 @@
         <div class="card w-full max-w-sm bg-base-100 shadow-lg">
         <div class="card-body">
             <h2 class="card-title text-2xl justify-center">Sign In</h2>
-            <form class="space-y-4">
+            <form autocomplete="off" method="post" action="{{ route('signin') }}" class="space-y-4">
+                @csrf
                 <div class="form-control">
-                    <input type="email" placeholder="Email" class="input input-bordered" required />
+                    <input name="email" value="{{ old('email') }}" type="email" placeholder="Email" class="input input-bordered" required />
                 </div>
                 <div class="form-control">
-                    <input type="password" placeholder="Password" class="input input-bordered" required />
+                    <input name="password" type="password" class="input input-bordered" required placeholder="Password" />
                 </div>
+                @if($errors->any())
+                    @foreach($errors->all() as $error)
+                        <div>
+                            <div role="alert" class="alert alert-error">
+                              <span>{{ $error }}</span>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
                 <div class="flex items-center justify-between">
                     <label class="label cursor-pointer space-x-2">
                         <input type="checkbox" class="checkbox checkbox-primary checkbox-sm" />

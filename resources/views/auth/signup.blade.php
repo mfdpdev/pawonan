@@ -4,18 +4,19 @@
         <div class="card w-full max-w-sm bg-base-100 shadow-lg">
             <div class="card-body">
                 <h2 class="card-title text-2xl justify-center">Sign Up</h2>
-                <form class="space-y-4">
+                <form method="post" action="{{ route('signup') }}" class="space-y-4">
+                    @csrf
                     <div class="form-control">
-                        <input type="text" placeholder="Full Name" class="input input-bordered" required />
+                        <input name="name" type="text" placeholder="Name" class="input input-bordered" required />
                     </div>
                     <div class="form-control">
-                        <input type="email" placeholder="Email" class="input input-bordered" required />
+                        <input name="email" type="email" placeholder="Email" class="input input-bordered" required />
                     </div>
                     <div class="form-control">
-                        <input type="password" placeholder="Password" class="input input-bordered" required />
+                        <input name="password" type="password" placeholder="Password" class="input input-bordered" required />
                     </div>
                     <div class="form-control">
-                        <input type="password" placeholder="Confirm Password" class="input input-bordered" required />
+                        <input name="password_confirmation" type="password" placeholder="Confirm Password" class="input input-bordered" required />
                     </div>
                     <button type="submit" class="btn btn-primary w-full">Sign Up</button>
                 </form>
