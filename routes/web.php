@@ -13,4 +13,4 @@ Route::post('/auth/signin', [AuthController::class, 'signin']);
 Route::get('/auth/signup', [AuthController::class, 'showSignUpForm'])->name('signup');
 Route::post('/auth/signup', [AuthController::class, 'signup']);
 
-Route::post('/auth/logout', [AuthController::class, 'logout']);
+Route::get('/auth/logout', [AuthController::class, 'logout']);

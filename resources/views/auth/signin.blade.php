@@ -27,7 +27,6 @@
                         <input type="checkbox" class="checkbox checkbox-primary checkbox-sm" />
                         <span class="label-text">Remember me</span>
                     </label>
-                    <a href="#" class="link link-primary link-hover text-sm">Forgot Password?</a>
                 </div>
                 <button type="submit" class="btn btn-primary w-full">Sign In</button>
             </form>
