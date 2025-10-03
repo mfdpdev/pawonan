@@ -13,3 +13,5 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+<body>
+<div class="max-w-md min-h-dvh mx-auto shadow-sm">

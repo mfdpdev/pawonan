@@ -1,5 +1,5 @@
 body {
-    @apply bg-gray-100
+    @apply bg-base-100
 }
 @import 'tailwindcss';
 
