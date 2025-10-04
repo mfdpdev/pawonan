@@ -10,8 +10,7 @@
             </div>
           </figure>
           <h2 class="card-title mx-auto">{{ $user->name ?? 'Guest' }}</h2>
-          <div class="card-body">
-            <form method="post" action="{{ route('updateProfile') }}" >
+            <form class="card-body" method="post" action="{{ route('updateProfile') }}" >
                 @csrf
                 <fieldset class="fieldset">
                     <legend class="fieldset-legend">Your Profile</legend>
@@ -23,21 +22,21 @@
                 </fieldset>
                 <button type="submit" class="btn btn-primary w-full">Update Profile</button>
             </form>
-          </div>
         </div>
         <div class="card bg-base-100 shadow-sm mt-4 grow">
-          <div class="card-body">
-            <h2 class="card-title">Change Password</h2>
-            <fieldset class="fieldset">
-              <legend class="fieldset-legend">New Password</legend>
-              <input type="text" class="input input-bordered w-full" placeholder="Type here..." />
-            </fieldset>
-            <fieldset class="fieldset">
-              <legend class="fieldset-legend">Confirm New Password</legend>
-              <input type="text" class="input input-bordered w-full" placeholder="Type here..." />
-            </fieldset>
-            <button type="submit" class="btn btn-primary w-full">Update Password</button>
-          </div>
+            <form class="card-body" method="post" action="{{ route('updatePassword') }}" >
+                @csrf
+                <h2 class="card-title">Change Password</h2>
+                <fieldset class="fieldset">
+                  <legend class="fieldset-legend">New Password</legend>
+                  <input name="password" type="password" class="input input-bordered w-full" placeholder="Type here..." />
+                </fieldset>
+                <fieldset class="fieldset">
+                  <legend class="fieldset-legend">Confirm New Password</legend>
+                  <input name="password_confirmation" type="password" class="input input-bordered w-full" placeholder="Type here..." />
+                </fieldset>
+                <button type="submit" class="btn btn-primary w-full">Update Password</button>
+            </form>
         </div>
     </div>
     @include('partials.navbar')

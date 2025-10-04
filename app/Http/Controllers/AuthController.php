@@ -24,7 +24,7 @@ class AuthController extends Controller
 
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
-            return redirect()->intended('/');
+            return redirect()->intended('/blogs');
         }
 
         return back()->withErrors([
@@ -48,13 +48,13 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $data["name"],
             'email' => $data["email"],
-            'password' => Hash::make($data["name"]),
+            'password' => Hash::make($data["password"]),
         ]);
 
-        return redirect('/');
+        return redirect('/blogs');
     }
 
-    public function logout(Request $request)
+    public function signout(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
