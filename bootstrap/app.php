@@ -13,9 +13,11 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         //
-        $middleware->redirectTo(function (Request $request) {
-            return $request->expectsJson() ? null : route('signin');
-        });
+        // $middleware->redirectTo(function (Request $request) {
+        //     return $request->expectsJson() ? null : route('signin');
+        // });
+        $middleware->redirectGuestsTo(fn (Request $request) => route('signin'));
+        $middleware->redirectUsersTo('/blogs');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
