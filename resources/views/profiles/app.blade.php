@@ -9,16 +9,20 @@
                   alt="Movie" />
             </div>
           </figure>
+          <h2 class="card-title mx-auto">{{ $user->name ?? 'Guest' }}</h2>
           <div class="card-body">
-            <fieldset class="fieldset">
-                  <legend class="fieldset-legend">Your Profile</legend>
-                <input type="file" class="file-input w-full" />
-            </fieldset>
-            <fieldset class="fieldset">
-              <legend class="fieldset-legend">Your Name</legend>
-              <input type="text" class="input input-bordered w-full" placeholder="Type here..." />
-            </fieldset>
-            <button type="submit" class="btn btn-primary w-full">Update Profile</button>
+            <form method="post" action="{{ route('updateProfile') }}" >
+                @csrf
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend">Your Profile</legend>
+                    <input name="profileImage" type="file" class="file-input w-full" />
+                </fieldset>
+                <fieldset class="fieldset">
+                  <legend class="fieldset-legend">Your Name</legend>
+                  <input name="name" value="{{ old('name', $user->name) }}" type="text" class="input input-bordered w-full" placeholder="Type here..." />
+                </fieldset>
+                <button type="submit" class="btn btn-primary w-full">Update Profile</button>
+            </form>
           </div>
         </div>
         <div class="card bg-base-100 shadow-sm mt-4 grow">
