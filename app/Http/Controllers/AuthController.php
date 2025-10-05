@@ -17,12 +17,13 @@ class AuthController extends Controller
 
     public function signin(Request $request)
     {
+        $remember = $request->has("rememberMe");
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
 
-        if(Auth::attempt($credentials)){
+        if(Auth::attempt($credentials, $remember)){
             $request->session()->regenerate();
             return redirect()->intended('/blogs');
         }
@@ -56,6 +57,7 @@ class AuthController extends Controller
 
     public function signout(Request $request)
     {
+        dd(Auth::viaRemember());
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

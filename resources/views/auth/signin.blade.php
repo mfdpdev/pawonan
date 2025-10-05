@@ -23,7 +23,7 @@
                 @endif
                 <div class="flex items-center justify-between">
                     <label class="label cursor-pointer space-x-2">
-                        <input type="checkbox" class="checkbox checkbox-primary checkbox-sm" />
+                        <input name="rememberMe" type="checkbox" class="checkbox checkbox-primary checkbox-sm" />
                         <span class="label-text">Remember me</span>
                     </label>
                 </div>
