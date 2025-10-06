@@ -1,12 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{AuthController, ProfileController};
+use App\Http\Controllers\{AuthController, ProfileController, PostController};
 
 
 Route::middleware('auth')->group(function() {
-    Route::get('/blogs', function () { return view('blogs.app'); })->name('blogs');
-    Route::get('/blogs/create', function () { return view('blogs.create'); })->name('blogs.create');
+    Route::get('/blogs', [PostController::class, "showPostPage"])->name('blogs');
+    Route::get('/blogs/create', [PostController::class, "showCreatePostPage"])->name('blogs.create');
+
+    Route::post('/posts/create', [PostController::class, "createPost"])->name('posts.create');
+
     Route::get('/profiles', [ProfileController::class, "showProfilePage"])->name('profiles');
 
     Route::post('/profiles/updateProfile', [ProfileController::class, "updateProfile"])->name('updateProfile');

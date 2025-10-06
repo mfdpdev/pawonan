@@ -5,7 +5,7 @@
           <figure class="p-6">
             <div class="w-32 h-32 rounded-md overflow-hidden ring-2 ring-primary ring-offset-base-100 ring-offset-2">
                 <img
-                  src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
+                  src="{{ asset($user->profile_image_path ?? 'images/default-profile.jpeg') }}"
                   alt="Movie" />
             </div>
           </figure>

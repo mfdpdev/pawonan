@@ -57,7 +57,6 @@ class AuthController extends Controller
 
     public function signout(Request $request)
     {
-        dd(Auth::viaRemember());
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

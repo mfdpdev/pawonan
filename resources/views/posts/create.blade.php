@@ -1,43 +1,48 @@
 @include('partials.header')
 <div class="flex flex-col h-dvh p-4 gap-4">
     <div class="grow w-full flex flex-col overflow-hidden">
-        <div class="grow flex flex-col gap-4 overflow-hidden">
+        <form enctype="multipart/form-data" method="post" action="{{ route('posts.create') }}" class="grow flex flex-col gap-4 overflow-hidden">
+            @csrf
             <div class="flex justify-between items-center">
                 <h2>New Blog</h2>
-                <button class="btn btn-primary">Publish</button>
+                <button type="submit" class="btn btn-primary">Publish</button>
             </div>
             <div>
-                <div id="image-preview" class="flex flex-col gap-2 py-2 hidden">
-                    <figure id="image-preview" class="rounded-sm w-full h-62 overflow-hidden">
+                <div id="image-preview" class="flex flex-col gap-2 py-2">
+                    <figure id="image-preview" class="bg-base-300 rounded-sm w-full h-42 overflow-hidden">
                         <img
                           id="preview-img"
                           class="" />
                     </figure>
-                    <button type="button" id="remove-image" class="btn btn-primary w-full">Remove Image</button>
+                    <button type="button" id="remove-image" class="btn btn-primary w-full btn-disabled">Remove Image</button>
                 </div>
                 <fieldset class="fieldset">
-                    <input id="image-input" name="profileImage" type="file" class="file-input w-full" />
+                    <input id="image-input" name="imagePost" type="file" class="file-input w-full" />
                 </fieldset>
             </div>
             <div>
                 <fieldset class="fieldset">
                   <legend class="fieldset-legend">Title</legend>
-                  <input type="text" class="input input-bordered w-full" placeholder="Enter Title" />
+                  <input name="title" type="text" class="input input-bordered w-full" placeholder="Enter Title" />
                 </fieldset>
                 <fieldset class="fieldset">
                   <legend class="fieldset-legend">Description</legend>
-                  <textarea class="resize-none textarea h-24 w-full" placeholder="Description"></textarea>
+                  <textarea name="description" class="resize-none textarea w-full" placeholder="Description"></textarea>
+                </fieldset>
+                <fieldset class="fieldset">
+                  <legend class="fieldset-legend">Ingredients</legend>
+                  <input name="ingredients" type="text" class="input input-bordered w-full" placeholder="Ingrediens1, Ingredients2, ..." />
                 </fieldset>
             </div>
             <div class="grow flex flex-col gap-2 overflow-hidden">
                 <fieldset class="fieldset">
                   <legend class="fieldset-legend">Instructions</legend>
-                  <button id="add-instruction" class="btn btn-primary">Add Instruction</button>
+                  <button type="button" id="add-instruction" class="btn btn-primary">Add Instruction</button>
                 </fieldset>
-                <div id="instructions-container" class="flex flex-col gap-4 grow overflow-auto">
+                <div id="instructions-container" class="flex flex-col gap-4 grow overflow-auto p-2">
                 </div>
             </div>
-        </div>
+        </form>
     </div>
     @include('partials.navbar')
 </div>
@@ -53,9 +58,10 @@
         if (file) {
             const reader = new FileReader();
             reader.onload = function(e) {
-                console.log(e.target.result)
                 previewImg.src = e.target.result;
-                imagePreview.classList.remove('hidden');
+                previewImg.classList.add('h-full');
+                previewImg.classList.add('w-full');
+                removeImageBtn.classList.remove('btn-disabled');
             };
             reader.readAsDataURL(file);
         }
@@ -63,18 +69,20 @@
 
     removeImageBtn.addEventListener('click', function() {
         imageInput.value = '';
-        imagePreview.classList.add('hidden');
+        removeImageBtn.classList.add('btn-disabled');
+        previewImg.classList.remove('h-full');
+        previewImg.classList.remove('w-full');
         previewImg.src = '';
     });
+
 
     // Dynamic Instructions Functionality
     document.getElementById('add-instruction').addEventListener('click', function () {
         const container = document.getElementById('instructions-container');
-        const index = container.children.length;
         const newField = document.createElement('div');
         newField.className = 'flex gap-2';
         newField.innerHTML = `
-            <input placeholder="Enter instruction" name="instruction[]" class="input input-bordered" />
+            <input placeholder="Enter instruction" name="instructions[]" class="input input-bordered" />
             <button class="btn btn-primary remove-instruction">Remove</button>
         `;
         container.appendChild(newField);
