@@ -47,7 +47,7 @@ class PostController extends Controller
         }
 
         Post::create($data);
-        return redirect()->route('blogs');
+        return redirect()->route('posts');
     }
 
     public function showPostPage()
@@ -112,6 +112,29 @@ class PostController extends Controller
             return redirect()->route('posts.update.form', $post->slug);
 
         } catch(ModelNotFoundException $e) {
+            return redirect()->route('posts');
+        }
+    }
+
+    public function deletePost(string $slug)
+    {
+        try {
+            // Cari post berdasarkan slug
+            $post = Post::where('slug', $slug)->firstOrFail();
+
+            // Cek jika post memiliki gambar dan hapus dari storage
+            if ($post->image_url) {
+                // Menghapus gambar dari storage
+                Storage::disk('public')->delete($post->image_url);
+            }
+
+            // Hapus post dari database
+            $post->delete();
+
+            // Redirect setelah penghapusan
+            return redirect()->route('posts');
+        } catch (ModelNotFoundException $e) {
+            // Jika post tidak ditemukan, redirect ke halaman posts
             return redirect()->route('posts');
         }
     }
