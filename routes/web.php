@@ -5,10 +5,13 @@ use App\Http\Controllers\{AuthController, ProfileController, PostController};
 
 
 Route::middleware('auth')->group(function() {
-    Route::get('/blogs', [PostController::class, "showPostPage"])->name('blogs');
-    Route::get('/blogs/create', [PostController::class, "showCreatePostPage"])->name('blogs.create');
 
-    Route::post('/posts/create', [PostController::class, "createPost"])->name('posts.create');
+    Route::get('/blogs', [PostController::class, "showPostPage"])->name('posts');
+    Route::get('/posts/create', [PostController::class, "showCreatePostPage"])->name('blogs.create');
+    Route::get('/posts/update/{slug}', [PostController::class, "showUpdatePost"])->name('posts.update.form');
+
+    Route::post('/posts', [PostController::class, "createPost"])->name('posts.create');
+    Route::put('/posts/{slug}', [PostController::class, "updatePost"])->name('posts.update');
 
     Route::get('/profiles', [ProfileController::class, "showProfilePage"])->name('profiles');
 

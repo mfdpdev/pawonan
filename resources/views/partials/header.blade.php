@@ -14,4 +14,4 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-<div class="max-w-md min-h-dvh mx-auto shadow-sm">
+<div class="max-w-md min-h-dvh mx-auto bg-base-100 shadow-sm">
