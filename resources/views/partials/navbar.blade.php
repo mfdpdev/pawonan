@@ -2,9 +2,9 @@
   <div class="w-full">
     <ul class="px-1 flex justify-around items-center">
       <li><a href="{{ route('posts') }}" >Posts</a></li>
-      <li><a>
-        <a href="{{ route('blogs.create') }}" class="btn btn-primary">+</a>
-      </a></li>
+      <li>
+        <a href="{{ route('posts.create') }}" class="btn btn-primary">+</a>
+      </li>
       <li>
         <div class="dropdown dropdown-top dropdown-end">
           <div tabindex="0" role="button" class="btn">
