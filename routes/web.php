@@ -16,7 +16,8 @@ Route::middleware('auth')->group(function() {
     //delete
     Route::get('/posts/{slug}', [PostController::class, "deletePost"])->name('posts.delete');
 
-    Route::get('/profiles', [ProfileController::class, "showProfilePage"])->name('profiles');
+    Route::get('/users/posts', [PostController::class, "showUserLoginPosts"])->name('authenticated.posts');
+    Route::get('/users/profile', [ProfileController::class, "showProfilePage"])->name('profiles');
 
     Route::post('/profiles/updateProfile', [ProfileController::class, "updateProfile"])->name('updateProfile');
     Route::post('/profiles/updatePassword', [ProfileController::class, "updatePassword"])->name('updatePassword');

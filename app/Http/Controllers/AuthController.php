@@ -25,7 +25,7 @@ class AuthController extends Controller
 
         if(Auth::attempt($credentials, $remember)){
             $request->session()->regenerate();
-            return redirect()->intended('/blogs');
+            return redirect()->intended('/posts');
         }
 
         return back()->withErrors([
@@ -52,7 +52,7 @@ class AuthController extends Controller
             'password' => Hash::make($data["password"]),
         ]);
 
-        return redirect('/blogs');
+        return redirect('/posts');
     }
 
     public function signout(Request $request)

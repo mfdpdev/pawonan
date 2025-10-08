@@ -32,8 +32,8 @@
                                 </figure>
                                 <div class="p-4 w-full flex flex-col justify-between">
                                     <div>
-                                        <h2 class="card-title">{{ Str::limit($post->title, 15) }}</h2>
-                                        <p>{{ Str::limit($post->description, 50) }}</p>
+                                        <h2 class="card-title">{{ $post->title }}</h2>
+                                        <p>{{ $post->description }}</p>
                                     </div>
                                     <div class="flex gap-2 items-center">
                                         <div class="avatar">
@@ -54,3 +54,4 @@
     @include('partials.navbar')
 </div>
 @include('partials.footer')
+

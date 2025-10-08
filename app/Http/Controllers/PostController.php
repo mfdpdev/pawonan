@@ -58,6 +58,15 @@ class PostController extends Controller
         ]);
     }
 
+    public function showUserLoginPosts()
+    {
+        $user = Auth::user();
+        $posts = Post::where('user_id', $user->id)->with('user')->get();
+        return view("posts.app", [
+            "posts" => $posts
+        ]);
+    }
+
     public function showUpdatePost($slug)
     {
         try {
