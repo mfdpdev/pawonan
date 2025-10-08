@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
+use App\Models\{Post, Comment};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -146,5 +146,35 @@ class PostController extends Controller
             // Jika post tidak ditemukan, redirect ke halaman posts
             return redirect()->route('posts');
         }
+    }
+
+    public function showDetailPost(string $id)
+    {
+        // $post = Post::with('user')->where('id', $id)->first();
+        $post = Post::with(['user', 'comments.user'])->findOrFail($id);
+
+        return view("posts.detail", [
+            'post' => $post,
+            'auth' => Auth::user(),
+        ]);
+    }
+
+    public function addComment(Request $request, $id){
+        $request->validate([
+            'content' => 'required|string|max:255',
+        ]);
+
+        $post = Post::findOrFail($id);
+
+        // Simpan komentar
+        Comment::create([
+            'post_id' => $post->id,
+            'user_id' => auth()->id(),
+            'content' => $request->content,
+        ]);
+
+        return redirect()->route('posts.detail', [
+            "id" => $id
+        ]);
     }
 }

@@ -22,7 +22,7 @@
             <ul>
                 @foreach($posts as $post)
                     <li class="p-4">
-                        <a href="">
+                        <a href="{{ route('posts.detail', $post->id) }}">
                             <div class="flex bg-base-100 shadow-sm w-full rounded-sm overflow-hidden">
                                 <figure class="w-82 h-44 bg-base-300">
                                     <div

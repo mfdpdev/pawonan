@@ -6,6 +6,8 @@ use App\Http\Controllers\{AuthController, ProfileController, PostController};
 
 Route::middleware('auth')->group(function() {
 
+    Route::get('/posts/{id}', [PostController::class, "showDetailPost"])->name('posts.detail');
+    Route::post('/posts/{id}/comments', [PostController::class, "addComment"])->name('posts.comments');
     Route::get('/posts', [PostController::class, "showPostPage"])->name('posts');
     Route::get('/posts/create', [PostController::class, "showCreatePostPage"])->name('blogs.create');
     Route::get('/posts/update/{slug}', [PostController::class, "showUpdatePost"])->name('posts.update.form');
