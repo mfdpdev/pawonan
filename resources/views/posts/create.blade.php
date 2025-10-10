@@ -9,11 +9,12 @@
             </div>
             <div>
                 <div id="image-preview" class="flex flex-col gap-2 py-2">
-                    <figure id="image-preview" class="bg-base-300 rounded-sm w-full h-42 overflow-hidden">
-                        <img
+                    <div id="image-preview" class="bg-base-300 rounded-sm w-full h-62 overflow-hidden">
+                        <figure
                           id="preview-img"
-                          class="" />
-                    </figure>
+                          class="bg-cover bg-center h-full" >
+                        </figure>
+                    </div>
                     <button type="button" id="remove-image" class="btn btn-primary w-full btn-disabled">Remove Image</button>
                 </div>
                 <fieldset class="fieldset">
@@ -58,9 +59,7 @@
         if (file) {
             const reader = new FileReader();
             reader.onload = function(e) {
-                previewImg.src = e.target.result;
-                previewImg.classList.add('h-full');
-                previewImg.classList.add('w-full');
+                previewImg.style.backgroundImage = `url(${e.target.result})`;
                 removeImageBtn.classList.remove('btn-disabled');
             };
             reader.readAsDataURL(file);
@@ -70,9 +69,7 @@
     removeImageBtn.addEventListener('click', function() {
         imageInput.value = '';
         removeImageBtn.classList.add('btn-disabled');
-        previewImg.classList.remove('h-full');
-        previewImg.classList.remove('w-full');
-        previewImg.src = '';
+        previewImg.style.backgroundImage = '';
     });
 
 

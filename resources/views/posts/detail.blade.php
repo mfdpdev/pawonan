@@ -2,20 +2,25 @@
 <div class="flex flex-col h-dvh p-4 gap-4">
     <div class="grow w-full flex flex-col overflow-hidden">
         <div class="grow flex flex-col gap-4 overflow-y-auto px-2">
-            <div class="flex items-center gap-3 mb-2">
-                <div class="avatar">
-                    <div class="w-10 rounded-sm bg-base-300">
-                        <img src="{{ asset('images/default-profile.jpeg') }}" />
+            <div class="flex items-center justify-between gap-3 mb-2">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="avatar">
+                        <div class="w-10 rounded-sm bg-base-300">
+                            <img src="{{ asset('images/default-profile.jpeg') }}" />
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="font-bold">{{ $post->user->name }}</h2>
                     </div>
                 </div>
-                <div>
-                    <h2 class="font-bold">{{ $post->user->name }}</h2>
-                </div>
+                @if($post->user->id == $auth->id)
+                    <a href="{{ route('posts.update.form', ['slug' => $post->slug]) }}" type="submit" class="btn btn-primary">Update</a>
+                @endif
             </div>
             <div>
                 <h2 class="text-xl font-bold mb-2">{{ $post->title }}</h2>
                 <div id="image-preview" class="flex flex-col gap-2 py-2">
-                    <figure id="image-preview" class="bg-base-300 rounded-sm w-full h-52 overflow-hidden">
+                    <figure id="image-preview" class="bg-base-300 rounded-sm w-full h-62 overflow-hidden">
                         <div
                           class="h-full bg-cover bg-center"
                           style="background-image: url('{{ Storage::url($post->image_url) }}');"
